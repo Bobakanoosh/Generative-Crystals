@@ -13,7 +13,7 @@ const GRIDBOX = CRYSTAL_SIZE + PADDING
 
 const backgroundColor = [49,39,45]
 let PALLETE = []
-let layers = []
+
 let crystals = []
 
 ///////////////////////////////////////////////////////////////
@@ -33,6 +33,8 @@ function setup() {
 
 function draw() {
 
+  let layersRendered = []
+
   // Create the grid of crystals
   for(let x = 1; x < COLUMNS+1; x++) {
     for(let y = 1; y < ROWS+1; y++) {
@@ -46,7 +48,6 @@ function draw() {
     crystal.render()
   })
 
-
 }
 
 function initData() {
@@ -54,16 +55,6 @@ function initData() {
   PALLETE = [
     color(245,85,62), //orange
     color(104,138,148), //blue
-  ]
-
-  layers = [
-    new CenteredShape(0.3),
-    new SteppedHexagons(0.3),
-    new RingOfShapes(0.3),
-    new OutlineShape(0.3),
-    new DottedLines(0.3),
-    new SimpleLines(0.3),
-    new Circles(0.3)
   ]
 
 }

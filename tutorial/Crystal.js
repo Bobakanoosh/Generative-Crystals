@@ -20,18 +20,28 @@ class Crystal {
 function getLayersToRender() {
 
 	let layersToRender = []
+	let layers = [
+		new CenteredShape(0.3),
+		new SteppedHexagons(0.6),
+		new RingOfShapes(0.3),
+		new OutlineShape(0.3),
+		new DottedLines(0.3),
+		new SimpleLines(0.3),
+		new Circles(0.3)
+	]	
+
 	layers.forEach((layer) => {
-		let rand = random(1);
+		let rand = random(1)
 		if(rand > layer.chance) {
 			layersToRender.push(layer)
-			console.log(layer.name);
 		}
 	})
 
-	// Make sure we have between 2-4 layers to render
+	//Make sure we have between 2-4 layers to render
 	if(layersToRender.length <= 1 || layersToRender.length >= 5)
 		return getLayersToRender()
-	else
-		return layersToRender;
+	else {
+		return shuffle(layersToRender)
+	}
 
 }

@@ -9,8 +9,6 @@ class Layer {
     this.weight = random([1, 3])
     this.layerColor = random(PALLETE)
     this.chance = 0.2
-
-    randomSeed(random(0, 1000));
   }
 }
 
@@ -122,23 +120,10 @@ class CenteredShape extends Layer {
     super()
     this.name = "CenteredShape";
     this.chance = chance
-
-    this.randomShape = random(1)
-    this.shapeSize = floor(random(this.stepsOut / 2, this.stepsOut)) * this.singleStep
-  
-    this.steps = floor(random(1, this.stepsOut))
-
-    if (this.steps < this.stepsOut / 2) {
-      this.radius = floor(random(1, this.steps)) * this.singleStep
-    } else if (this.steps > this.stepsOut / 2) {
-      this.radius = floor(random(1, this.stepsOut - this.steps)) * this.singleStep
-    } else {
-      this.radius = floor(random(1, (this.stepsOut / 2) + 1)) * this.singleStep
-    }
-
   }
 
   render () {
+    this.generateRandom()
     fill(this.layerColor)
     noStroke()
 
@@ -154,6 +139,23 @@ class CenteredShape extends Layer {
         hexagon(0, 0, this.shapeSize)
       }
     })
+  }
+
+  generateRandom() {
+    this.weight = random([1, 3])
+    this.layerColor = random(PALLETE)
+    this.randomShape = random(1)
+    this.shapeSize = floor(random(this.stepsOut / 2, this.stepsOut)) * this.singleStep
+  
+    this.steps = floor(random(1, this.stepsOut))
+
+    if (this.steps < this.stepsOut / 2) {
+      this.radius = floor(random(1, this.steps)) * this.singleStep
+    } else if (this.steps > this.stepsOut / 2) {
+      this.radius = floor(random(1, this.stepsOut - this.steps)) * this.singleStep
+    } else {
+      this.radius = floor(random(1, (this.stepsOut / 2) + 1)) * this.singleStep
+    }
   }
 }
 
@@ -204,8 +206,8 @@ class SteppedHexagons extends Layer {
     this.name = "SteppedHexagons";
     this.chance = chance
 
-    this.numSteps = random([this.stepsOut, this.stepsOut * 1.25])
-    this.centerOffset = (CRYSTAL_SIZE / 2) * 0.15
+    this.numSteps = random(this.stepsOut, this.stepsOut * 1.25)
+    this.centerOffset = (CRYSTAL_SIZE / 2) * random(0.1, 1)
     this.singleStep = ((CRYSTAL_SIZE / 2) - this.centerOffset) / this.numSteps
     
   }
@@ -217,7 +219,7 @@ class SteppedHexagons extends Layer {
     pushPop(() => {
       rotate(this.angle / 2) 
       for (let i = 1; i < this.numSteps + 1; i++) {
-        hexagon(0, 0, this.centerOffset + (i * this.singleStep))
+        hexagon(0, 0, this.centerOffset + (i * this.singleStep * 0.8))
       }
     })
   }

@@ -35,3 +35,47 @@ function pushPop(func) {
     func()
   pop()
 }
+
+const layerConstructors = [
+  {
+    name: 'Outline Shape',
+    init: () => new OutlineShape(),
+    chance: 0.3
+  },
+  {
+    name: 'Centered Shape',
+    init: () => new CenteredShape(),
+    chance: 0.3
+  },
+  {
+    name: 'Circles',
+    init: () => new Circles(),
+    chance: 0.3
+  },
+  {
+    name: 'Simple Lines',
+    init: () => new SimpleLines(),
+    chance: 0.3
+  },
+  {
+    name: 'Dotted Lines',
+    init: () => new DottedLines(),
+    chance: 0.3
+  },
+  {
+    name: 'Ring of Shapes',
+    init: () => new RingOfShapes(),
+    chance: 0.3
+  },
+  {
+    name: 'Stepped Hexagons',
+    init: () => new SteppedHexagons(),
+    chance: 0.7
+  },
+  {
+    name: 'Test Lines',
+    init: () => new TestLines(),
+    chance: 1
+  }
+]
+
