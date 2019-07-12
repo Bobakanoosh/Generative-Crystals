@@ -12,8 +12,8 @@ const MARGIN = CRYSTAL_SIZE / 2
 const GRIDBOX = CRYSTAL_SIZE + PADDING
 
 const backgroundColor = [49,39,45]
-let PALLETE = []
 
+const PALLETE = 'gray-green-red'
 let crystals = []
 
 ///////////////////////////////////////////////////////////////
@@ -43,7 +43,7 @@ function draw() {
       crystals.push(new Crystal(posX, posY))
     }
   }
-  
+  +
   crystals.forEach(crystal => {
     crystal.render()
   })
@@ -52,10 +52,7 @@ function draw() {
 
 function initData() {
 
-  PALLETE = [
-    color(245,85,62), //orange
-    color(104,138,148), //blue
-  ]
+  populateColors()
 
 }
 
@@ -63,5 +60,5 @@ function initSettings() {
   noLoop()
   angleMode(DEGREES)
   rectMode(CENTER)
-  background(backgroundColor)
+  background(getBackgroundColor())
 }

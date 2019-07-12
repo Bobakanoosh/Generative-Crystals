@@ -7,7 +7,7 @@ class Layer {
     this.stepsOut = 8
     this.singleStep = (CRYSTAL_SIZE / 2) / this.stepsOut
     this.weight = random([1, 3])
-    this.layerColor = random(PALLETE)
+    this.layerColor = random(getColors())
     this.chance = 0.2
   }
 }
@@ -120,10 +120,22 @@ class CenteredShape extends Layer {
     super()
     this.name = "CenteredShape";
     this.chance = chance
+
+    this.randomShape = random(1)
+    this.shapeSize = floor(random(this.stepsOut / 2, this.stepsOut)) * this.singleStep
+  
+    this.steps = floor(random(1, this.stepsOut))
+
+    if (this.steps < this.stepsOut / 2) {
+      this.radius = floor(random(1, this.steps)) * this.singleStep
+    } else if (this.steps > this.stepsOut / 2) {
+      this.radius = floor(random(1, this.stepsOut - this.steps)) * this.singleStep
+    } else {
+      this.radius = floor(random(1, (this.stepsOut / 2) + 1)) * this.singleStep
+    }
   }
 
   render () {
-    this.generateRandom()
     fill(this.layerColor)
     noStroke()
 
@@ -139,23 +151,6 @@ class CenteredShape extends Layer {
         hexagon(0, 0, this.shapeSize)
       }
     })
-  }
-
-  generateRandom() {
-    this.weight = random([1, 3])
-    this.layerColor = random(PALLETE)
-    this.randomShape = random(1)
-    this.shapeSize = floor(random(this.stepsOut / 2, this.stepsOut)) * this.singleStep
-  
-    this.steps = floor(random(1, this.stepsOut))
-
-    if (this.steps < this.stepsOut / 2) {
-      this.radius = floor(random(1, this.steps)) * this.singleStep
-    } else if (this.steps > this.stepsOut / 2) {
-      this.radius = floor(random(1, this.stepsOut - this.steps)) * this.singleStep
-    } else {
-      this.radius = floor(random(1, (this.stepsOut / 2) + 1)) * this.singleStep
-    }
   }
 }
 

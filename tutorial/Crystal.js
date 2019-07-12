@@ -21,7 +21,7 @@ function getLayersToRender() {
 
 	let layersToRender = []
 	let layers = [
-		new CenteredShape(0.3),
+		new CenteredShape(0.6),
 		new SteppedHexagons(0.6),
 		new RingOfShapes(0.3),
 		new OutlineShape(0.3),
